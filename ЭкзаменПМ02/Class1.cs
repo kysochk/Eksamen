@@ -178,6 +178,23 @@ namespace ЭкзаменПМ02
             }
             return LBr[maxind];
         }
+        /// <summary>
+        /// Метод записи в файл
+        /// </summary>
+        /// <param name="LPathFunc"></param>
+        /// <param name="maxind"></param>
+        /// <param name="max"></param>
+        public void vivod(List<List<Struct>> LPathFunc, int maxind, int max)
+        {
+            using (StreamWriter sr = new StreamWriter(@"Вывод.csv", false, Encoding.Default, 10))
+            {
+                foreach (Struct Path in LPathFunc[maxind])
+                {
+                    sr.Write(Path.p1 + " - " + Path.p2 + ";(" + Path.length + ") ");
+                }
+                sr.WriteLine("Длина " + max);
+            }
+        }
 
 
     }
