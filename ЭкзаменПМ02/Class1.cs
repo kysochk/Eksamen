@@ -149,7 +149,7 @@ namespace ЭкзаменПМ02
                         if (str2 != "")
                         {
                             string[] str3 = str2.Split('-');
-                            LBr[LBr.Count - 1].Add(StQ.Find(x => x.p1 == Convert.ToInt32(str3[0]) && x.point2 == Convert.ToInt32(str3[1])));
+                            LBr[LBr.Count - 1].Add(StQ.Find(x => x.p1 == Convert.ToInt32(str3[0]) && x.p2 == Convert.ToInt32(str3[1])));
                         }
                     }
                 }
@@ -162,7 +162,7 @@ namespace ЭкзаменПМ02
                     {
                         if (l1[0].p1 == StQ[MinElem(StQ)].p1)
                         {
-                            l.InsertRange(0, l1.FindAll(x => l1.IndexOf(x) <= l1.FindIndex(y => y.point2 == l[0].point1)));
+                            l.InsertRange(0, l1.FindAll(x => l1.IndexOf(x) <= l1.FindIndex(y => y.p2 == l[0].p1)));
                         }
                     }
                 }
