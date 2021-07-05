@@ -9,7 +9,7 @@ namespace ЭкзаменПМ02
     class Class1
     {
         /// <summary>
-        /// Структура путей и стоимости перемещения
+        /// пути и стоимость перемещения
         /// </summary>
         public struct Struct
         {
