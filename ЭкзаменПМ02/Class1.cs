@@ -20,6 +20,12 @@ namespace ЭкзаменПМ02
             {
                 return p1.ToString() + " - " + p2.ToString() + " " + length.ToString();
             }
+            /// <summary>
+            /// Поиск начальной точки.Путем взятия самого маленького элемента из первого столбца, которого нет во втором
+            /// </summary>
+            /// <param name="StQ"></param>
+            /// <returns></returns>
+
             public int MinElem(List<Struct> StQ)
             {
                 int min = StQ[0].p1, minind = 0;
@@ -34,7 +40,7 @@ namespace ЭкзаменПМ02
                 return minind;
             }
             /// <summary>
-            /// Поиск конечной точки, по такому же принципу что и начальную точку.
+            /// Поиск конечной точки
             /// </summary>
             /// <param name="StQ"></param>
             /// <returns></returns>
