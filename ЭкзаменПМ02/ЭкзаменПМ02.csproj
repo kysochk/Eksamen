@@ -50,6 +50,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Климочкина_Диаграммы.pdf" />
+    <None Include="Климочкина_КП.docx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
