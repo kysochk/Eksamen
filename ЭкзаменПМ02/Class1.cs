@@ -10,6 +10,7 @@ namespace ЭкзаменПМ02
 {
     class Class1
     {
+        public string a;
         /// <summary>
         /// пути и стоимость перемещения
         /// </summary>
@@ -46,27 +47,28 @@ namespace ЭкзаменПМ02
             /// </summary>
             /// <param name="StQ"></param>
             /// <returns></returns>
-            public int MaxElem(List<Struct> StQ)
-            {
-                int min = StQ[0].p2, maxind = 0;
-                foreach (Struct Path in StQ)
-                {
-                    if (Path.p2 >= min)
-                    {
-                        min = Path.p1;
-                        maxind = StQ.IndexOf(Path);
-                    }
-                }
-                return maxind;
-            }
+          
 
         }
-    /// <summary>
-     /// Чтение из файла
-     /// </summary>
-     /// <param name="path"></param>
-     /// <returns></returns>
-    public List<Struct> Input()
+        public int MaxElem(List<Struct> StQ)
+        {
+            int min = StQ[0].p2, maxind = 0;
+            foreach (Struct Path in StQ)
+            {
+                if (Path.p2 >= min)
+                {
+                    min = Path.p1;
+                    maxind = StQ.IndexOf(Path);
+                }
+            }
+            return maxind;
+        }
+        /// <summary>
+        /// Чтение из файла
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public List<Struct> Input()
     {
         Debug.WriteLine("\n\nЧтение:");
         List<Struct> StQ = new List<Struct>();
@@ -82,7 +84,35 @@ namespace ЭкзаменПМ02
         }
         return StQ;
     }
+        /// <summary>
+        /// Метод построения пути Работает рекурсивно
+        /// </summary>
+        /// <param name="StQ"></param>
+        /// <param name="minel"></param>
+        /// <returns></returns>
+        public int CreatePath(List<Struct> StQ, Struct minel)
+        {
+            int Lenght = 0;
+            Struct MoveVar = StQ.Find(x => x.p1 == minel.p1 && x.p2 == minel.p2);//Поиск возможных вариантов передвижения
+            a += MoveVar.p1.ToString() + "-" + MoveVar.p2.ToString();//Пишем передвижение
+            if (MoveVar.p2 == StQ[MaxElem(StQ)].p2)//Смотрим не в конце ли мы
+            {
+                a += ";";
+                return MoveVar.length;
+            }
+            else
+            {
+                for (int i = 0; i < StQ.Count; i++)//Ищем стоимость перемещения в ту точку в которую мы пришли
+                {
+                    if (StQ[i].p1 == MoveVar.p2)
+                    {
+                        a += ",";
+                        Lenght = CreatePath(StQ, StQ[i]) + MoveVar.length;
+                    }
+                }
+            }
+            return Lenght;
+        }
 
-
-}
-}
+        }
+    }
