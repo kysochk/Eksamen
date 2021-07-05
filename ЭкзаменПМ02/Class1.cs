@@ -28,6 +28,48 @@ namespace ЭкзаменПМ02
 
         }
         /// <summary>
+        /// Рабочий метод по построению путей и подсчета длины.
+        /// </summary>
+        public void Work()
+        {
+            List<Struct> LPath;//лист путей
+            List<Struct> StQ = Input();//лист исходных данных 
+            LPath = StQ.FindAll(x => x.p1 == StQ[MinElem(StQ)].p1);//запись точки начала в лист путей
+            List<List<Struct>> LPathFunc = new List<List<Struct>>();//лист путей и функций
+            foreach (Struct rb in LPath)//построение путей из начальных возможных перемещений
+            {
+                CreatePath(StQ, rb);//Построение пути
+                LPathFunc.Add(Branches(StQ, a));//Построение ветвей
+                a = "";
+            }
+
+            Debug.WriteLine("Все пути: ");
+            for (int i = 0; i < LPathFunc.Count; i++)
+            {
+                foreach (Struct path in LPathFunc[i])
+                {
+                    Debug.Write(path.p1 + " - " + path.p2 + ";(" + path.length + ") ");
+                }
+                Debug.WriteLine("");
+            }
+
+
+            int max = LPathFunc[0][0].length, maxind = 0;
+            for (int i = 0; i < LPath.Count; i++)// подсчет стоимости путей
+            {
+                if (LenFunc(LPathFunc[i]) >= max)// выбор самого большого
+                {
+                    max = LenFunc(LPathFunc[i]);
+                    maxind = i;
+                }
+            }
+            Debug.WriteLine("Максимум " + max);
+            Debug.WriteLine("Номер максимума " + maxind);
+            vivod(LPathFunc, maxind, max);//Запись в файл решения
+            Debug.Listeners.Clear();
+        }
+
+        /// <summary>
         /// Поиск начальной точки.Путем взятия самого маленького элемента из первого столбца, которого нет во втором
         /// </summary>
         /// <param name="StQ"></param>
