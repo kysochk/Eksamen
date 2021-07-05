@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ЭкзаменПМ02
 {
-    class Class1
+    public class Class1
     {
         public string a;
         /// <summary>
