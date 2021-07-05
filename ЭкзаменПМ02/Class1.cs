@@ -20,6 +20,38 @@ namespace ЭкзаменПМ02
             {
                 return p1.ToString() + " - " + p2.ToString() + " " + length.ToString();
             }
+            public int MinElem(List<Struct> StQ)
+            {
+                int min = StQ[0].p1, minind = 0;
+                foreach (Struct Path in StQ)
+                {
+                    if (Path.p1 <= min)
+                    {
+                        min = Path.p1;
+                        minind = StQ.IndexOf(Path);
+                    }
+                }
+                return minind;
+            }
+            /// <summary>
+            /// Поиск конечной точки, по такому же принципу что и начальную точку.
+            /// </summary>
+            /// <param name="StQ"></param>
+            /// <returns></returns>
+            public int MaxElem(List<Struct> StQ)
+            {
+                int min = StQ[0].p2, maxind = 0;
+                foreach (Struct Path in StQ)
+                {
+                    if (Path.p2 >= min)
+                    {
+                        min = Path.p1;
+                        maxind = StQ.IndexOf(Path);
+                    }
+                }
+                return maxind;
+            }
+
         }
 
     }
