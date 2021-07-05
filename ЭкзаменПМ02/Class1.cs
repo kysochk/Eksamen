@@ -93,16 +93,16 @@ namespace ЭкзаменПМ02
         public int CreatePath(List<Struct> StQ, Struct minel)
         {
             int Lenght = 0;
-            Struct MoveVar = StQ.Find(x => x.p1 == minel.p1 && x.p2 == minel.p2);//Поиск возможных вариантов передвижения
-            a += MoveVar.p1.ToString() + "-" + MoveVar.p2.ToString();//Пишем передвижение
-            if (MoveVar.p2 == StQ[MaxElem(StQ)].p2)//Смотрим не в конце ли мы
+            Struct MoveVar = StQ.Find(x => x.p1 == minel.p1 && x.p2 == minel.p2);//возможные варианты передвижения
+            a += MoveVar.p1.ToString() + "-" + MoveVar.p2.ToString();//передижение
+            if (MoveVar.p2 == StQ[MaxElem(StQ)].p2)//местонахождение
             {
                 a += ";";
                 return MoveVar.length;
             }
             else
             {
-                for (int i = 0; i < StQ.Count; i++)//Ищем стоимость перемещения в ту точку в которую мы пришли
+                for (int i = 0; i < StQ.Count; i++)//стоимость перемещения
                 {
                     if (StQ[i].p1 == MoveVar.p2)
                     {
@@ -113,6 +113,20 @@ namespace ЭкзаменПМ02
             }
             return Lenght;
         }
-
+        /// <summary>
+        /// Сумма длины пути
+        /// </summary>
+        /// <param name="StQ"></param>
+        /// <returns></returns>
+        public int LenFunc(List<Struct> StQ)
+        {
+            int Lenght = 0;
+            foreach (Struct rb in StQ)
+            {
+                Lenght += rb.length;
+            }
+            return Lenght;
         }
+
     }
+}
