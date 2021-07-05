@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +61,28 @@ namespace ЭкзаменПМ02
             }
 
         }
-
+    /// <summary>
+     /// Чтение из файла
+     /// </summary>
+     /// <param name="path"></param>
+     /// <returns></returns>
+    public List<Struct> Input()
+    {
+        Debug.WriteLine("\n\nЧтение:");
+        List<Struct> StQ = new List<Struct>();
+        using (StreamReader sr = new StreamReader("Ввод.csv"))
+        {
+            while (sr.EndOfStream != true)
+            {
+                string[] s1 = sr.ReadLine().Split(';');
+                string[] s2 = s1[0].Split('-');
+                Debug.WriteLine(s2[0] + " - " + s2[1] + "; " + s1[1]);
+                StQ.Add(new Struct { p1 = Convert.ToInt32(s2[0]), p2 = Convert.ToInt32(s2[1]), length = Convert.ToInt32(s1[1]) });
+            }
+        }
+        return StQ;
     }
+
+
+}
 }
